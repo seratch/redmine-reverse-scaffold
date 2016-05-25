@@ -1,0 +1,166 @@
+<%@val s: skinny.Skinny %>
+<%@val keyAndErrorMessages: skinny.KeyAndErrorMessages %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<div class="form-group">
+  <label class="control-label" for="name">
+    ${s.i18n.getOrKey("role.name")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("name")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="name" class="form-control" value="${s.params.name}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("name"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("name"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="position">
+    ${s.i18n.getOrKey("role.position")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("position")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="position" class="form-control" value="${s.params.position}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("position"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("position"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="assignable">
+    ${s.i18n.getOrKey("role.assignable")}
+  </label>
+  <div class="controls row">
+    <div class="col-xs-12">
+      <input type="checkbox" name="assignable" value="true" #if(s.params.assignable==Some(true)) checked #end />
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="builtin">
+    ${s.i18n.getOrKey("role.builtin")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("builtin")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="builtin" class="form-control" value="${s.params.builtin}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("builtin"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("builtin"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="permissions">
+    ${s.i18n.getOrKey("role.permissions")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("permissions")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="permissions" class="form-control" value="${s.params.permissions}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("permissions"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("permissions"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="issues_visibility">
+    ${s.i18n.getOrKey("role.issuesVisibility")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("issues_visibility")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="issues_visibility" class="form-control" value="${s.params.issues_visibility}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("issues_visibility"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("issues_visibility"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="users_visibility">
+    ${s.i18n.getOrKey("role.usersVisibility")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("users_visibility")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="users_visibility" class="form-control" value="${s.params.users_visibility}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("users_visibility"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("users_visibility"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="time_entries_visibility">
+    ${s.i18n.getOrKey("role.timeEntriesVisibility")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("time_entries_visibility")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="time_entries_visibility" class="form-control" value="${s.params.time_entries_visibility}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("time_entries_visibility"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("time_entries_visibility"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="all_roles_managed">
+    ${s.i18n.getOrKey("role.allRolesManaged")}
+  </label>
+  <div class="controls row">
+    <div class="col-xs-12">
+      <input type="checkbox" name="all_roles_managed" value="true" #if(s.params.all_roles_managed==Some(true)) checked #end />
+    </div>
+  </div>
+</div>
+<div class="form-actions">
+  ${unescape(s.csrfHiddenInputTag)}
+  <input type="submit" class="btn btn-primary" value="${s.i18n.getOrKey("submit")}">
+  <a class="btn btn-default" href="${s.url(Controllers.roles.indexUrl)}">${s.i18n.getOrKey("cancel")}</a>
+</div>

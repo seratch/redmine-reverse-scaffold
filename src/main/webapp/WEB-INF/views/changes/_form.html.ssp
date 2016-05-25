@@ -1,0 +1,146 @@
+<%@val s: skinny.Skinny %>
+<%@val keyAndErrorMessages: skinny.KeyAndErrorMessages %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<div class="form-group">
+  <label class="control-label" for="changeset_id">
+    ${s.i18n.getOrKey("change.changesetId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("changeset_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="changeset_id" class="form-control" value="${s.params.changeset_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("changeset_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("changeset_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="action">
+    ${s.i18n.getOrKey("change.action")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("action")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="action" class="form-control" value="${s.params.action}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("action"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("action"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="path">
+    ${s.i18n.getOrKey("change.path")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("path")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="path" class="form-control" value="${s.params.path}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("path"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("path"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="from_path">
+    ${s.i18n.getOrKey("change.fromPath")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("from_path")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="from_path" class="form-control" value="${s.params.from_path}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("from_path"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("from_path"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="from_revision">
+    ${s.i18n.getOrKey("change.fromRevision")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("from_revision")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="from_revision" class="form-control" value="${s.params.from_revision}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("from_revision"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("from_revision"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="revision">
+    ${s.i18n.getOrKey("change.revision")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("revision")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="revision" class="form-control" value="${s.params.revision}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("revision"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("revision"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="branch">
+    ${s.i18n.getOrKey("change.branch")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("branch")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="branch" class="form-control" value="${s.params.branch}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("branch"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("branch"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-actions">
+  ${unescape(s.csrfHiddenInputTag)}
+  <input type="submit" class="btn btn-primary" value="${s.i18n.getOrKey("submit")}">
+  <a class="btn btn-default" href="${s.url(Controllers.changes.indexUrl)}">${s.i18n.getOrKey("cancel")}</a>
+</div>

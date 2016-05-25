@@ -1,0 +1,74 @@
+<%@val item: model.Message %>
+<%@val s: skinny.Skinny %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<h3>${s.i18n.getOrKey("message.detail")}</h3>
+<hr/>
+#for (notice <- s.flash.notice)
+  <p class="alert alert-info">${notice}</p>
+#end
+<table class="table table-bordered">
+<tbody>
+  <tr>
+    <th>${s.i18n.getOrKey("message.id")}</th>
+    <td>${item.id}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("message.boardId")}</th>
+    <td>${item.boardId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("message.parentId")}</th>
+    <td>${item.parentId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("message.subject")}</th>
+    <td>${item.subject}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("message.content")}</th>
+    <td>${item.content}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("message.authorId")}</th>
+    <td>${item.authorId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("message.repliesCount")}</th>
+    <td>${item.repliesCount}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("message.lastReplyId")}</th>
+    <td>${item.lastReplyId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("message.createdOn")}</th>
+    <td>${item.createdOn}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("message.updatedOn")}</th>
+    <td>${item.updatedOn}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("message.locked")}</th>
+    <td>${item.locked}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("message.sticky")}</th>
+    <td>${item.sticky}</td>
+  </tr>
+
+</tbody>
+</table>
+
+<hr/>
+<div class="form-actions">
+  <a class="btn btn-default" href="${s.url(Controllers.messages.indexUrl)}">${s.i18n.getOrKey("backToList")}</a>
+  <a href="${s.url(Controllers.messages.editUrl, "id" -> item.id)}" class="btn btn-info">${s.i18n.getOrKey("edit")}</a>
+  <a data-method="delete" data-confirm="${s.i18n.getOrKey("message.delete.confirm")}"
+    href="${s.url(Controllers.messages.destroyUrl, "id" -> item.id)}" rel="nofollow" class="btn btn-danger">${s.i18n.getOrKey("delete")}</a>
+</div>

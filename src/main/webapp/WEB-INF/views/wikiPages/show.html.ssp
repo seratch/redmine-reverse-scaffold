@@ -1,0 +1,50 @@
+<%@val item: model.WikiPage %>
+<%@val s: skinny.Skinny %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<h3>${s.i18n.getOrKey("wikiPage.detail")}</h3>
+<hr/>
+#for (notice <- s.flash.notice)
+  <p class="alert alert-info">${notice}</p>
+#end
+<table class="table table-bordered">
+<tbody>
+  <tr>
+    <th>${s.i18n.getOrKey("wikiPage.id")}</th>
+    <td>${item.id}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("wikiPage.wikiId")}</th>
+    <td>${item.wikiId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("wikiPage.title")}</th>
+    <td>${item.title}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("wikiPage.createdOn")}</th>
+    <td>${item.createdOn}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("wikiPage.isProtected")}</th>
+    <td>${item.isProtected}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("wikiPage.parentId")}</th>
+    <td>${item.parentId}</td>
+  </tr>
+
+</tbody>
+</table>
+
+<hr/>
+<div class="form-actions">
+  <a class="btn btn-default" href="${s.url(Controllers.wikiPages.indexUrl)}">${s.i18n.getOrKey("backToList")}</a>
+  <a href="${s.url(Controllers.wikiPages.editUrl, "id" -> item.id)}" class="btn btn-info">${s.i18n.getOrKey("edit")}</a>
+  <a data-method="delete" data-confirm="${s.i18n.getOrKey("wikiPage.delete.confirm")}"
+    href="${s.url(Controllers.wikiPages.destroyUrl, "id" -> item.id)}" rel="nofollow" class="btn btn-danger">${s.i18n.getOrKey("delete")}</a>
+</div>

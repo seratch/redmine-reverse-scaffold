@@ -1,0 +1,280 @@
+<%@val s: skinny.Skinny %>
+<%@val keyAndErrorMessages: skinny.KeyAndErrorMessages %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<div class="form-group">
+  <label class="control-label" for="the_type">
+    ${s.i18n.getOrKey("authSource.theType")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("the_type")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="the_type" class="form-control" value="${s.params.the_type}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("the_type"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("the_type"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="name">
+    ${s.i18n.getOrKey("authSource.name")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("name")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="name" class="form-control" value="${s.params.name}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("name"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("name"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="host">
+    ${s.i18n.getOrKey("authSource.host")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("host")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="host" class="form-control" value="${s.params.host}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("host"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("host"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="port">
+    ${s.i18n.getOrKey("authSource.port")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("port")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="port" class="form-control" value="${s.params.port}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("port"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("port"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="account">
+    ${s.i18n.getOrKey("authSource.account")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("account")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="account" class="form-control" value="${s.params.account}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("account"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("account"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="account_password">
+    ${s.i18n.getOrKey("authSource.accountPassword")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("account_password")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="account_password" class="form-control" value="${s.params.account_password}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("account_password"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("account_password"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="base_dn">
+    ${s.i18n.getOrKey("authSource.baseDn")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("base_dn")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="base_dn" class="form-control" value="${s.params.base_dn}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("base_dn"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("base_dn"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="attr_login">
+    ${s.i18n.getOrKey("authSource.attrLogin")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("attr_login")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="attr_login" class="form-control" value="${s.params.attr_login}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("attr_login"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("attr_login"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="attr_firstname">
+    ${s.i18n.getOrKey("authSource.attrFirstname")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("attr_firstname")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="attr_firstname" class="form-control" value="${s.params.attr_firstname}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("attr_firstname"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("attr_firstname"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="attr_lastname">
+    ${s.i18n.getOrKey("authSource.attrLastname")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("attr_lastname")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="attr_lastname" class="form-control" value="${s.params.attr_lastname}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("attr_lastname"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("attr_lastname"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="attr_mail">
+    ${s.i18n.getOrKey("authSource.attrMail")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("attr_mail")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="attr_mail" class="form-control" value="${s.params.attr_mail}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("attr_mail"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("attr_mail"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="onthefly_register">
+    ${s.i18n.getOrKey("authSource.ontheflyRegister")}
+  </label>
+  <div class="controls row">
+    <div class="col-xs-12">
+      <input type="checkbox" name="onthefly_register" value="true" #if(s.params.onthefly_register==Some(true)) checked #end />
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="tls">
+    ${s.i18n.getOrKey("authSource.tls")}
+  </label>
+  <div class="controls row">
+    <div class="col-xs-12">
+      <input type="checkbox" name="tls" value="true" #if(s.params.tls==Some(true)) checked #end />
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="filter">
+    ${s.i18n.getOrKey("authSource.filter")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("filter")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="filter" class="form-control" value="${s.params.filter}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("filter"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("filter"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="timeout">
+    ${s.i18n.getOrKey("authSource.timeout")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("timeout")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="timeout" class="form-control" value="${s.params.timeout}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("timeout"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("timeout"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-actions">
+  ${unescape(s.csrfHiddenInputTag)}
+  <input type="submit" class="btn btn-primary" value="${s.i18n.getOrKey("submit")}">
+  <a class="btn btn-default" href="${s.url(Controllers.authSources.indexUrl)}">${s.i18n.getOrKey("cancel")}</a>
+</div>

@@ -1,0 +1,82 @@
+<%@val s: skinny.Skinny %>
+<%@val items: Seq[model.Role] %>
+<%@val totalPages: Int %>
+<%@val page: Int = s.params.page.map(_.toString.toInt).getOrElse(1) %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<h3>${s.i18n.getOrKey("role.list")}</h3>
+<hr/>
+#for (notice <- s.flash.notice)
+  <p class="alert alert-info">${notice}</p>
+#end
+
+#if (totalPages > 1)
+  <ul class="pagination">
+    <li>
+      <a href="${s.url(Controllers.roles.indexUrl, "page" -> 1)}">&laquo;</a>
+    </li>
+    <% val maxPage = Math.min(totalPages, if (page <= 5) 11 else page + 5) %>
+    #for (i <- Math.max(1, maxPage - 10) to maxPage)
+      <li class="${if (i == page) "active" else ""}">
+        <a href="${s.url(Controllers.roles.indexUrl, "page" -> i)}">${i}</a>
+      </li>
+    #end
+    <li>
+      <a href="${s.url(Controllers.roles.indexUrl, "page" -> totalPages)}">&raquo;</a>
+    </li>
+    <li>
+      <span>${Math.min(page, totalPages)} / ${totalPages}</span>
+    </li>
+  </ul>
+#end
+
+<table class="table table-bordered">
+<thead>
+  <tr>
+    <th>${s.i18n.getOrKey("role.id")}</th>
+    <th>${s.i18n.getOrKey("role.name")}</th>
+    <th>${s.i18n.getOrKey("role.position")}</th>
+    <th>${s.i18n.getOrKey("role.assignable")}</th>
+    <th>${s.i18n.getOrKey("role.builtin")}</th>
+    <th>${s.i18n.getOrKey("role.permissions")}</th>
+    <th>${s.i18n.getOrKey("role.issuesVisibility")}</th>
+    <th>${s.i18n.getOrKey("role.usersVisibility")}</th>
+    <th>${s.i18n.getOrKey("role.timeEntriesVisibility")}</th>
+    <th>${s.i18n.getOrKey("role.allRolesManaged")}</th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+  #for (item <- items)
+  <tr>
+    <td>${item.id}</td>
+    <td>${item.name}</td>
+    <td>${item.position}</td>
+    <td>${item.assignable}</td>
+    <td>${item.builtin}</td>
+    <td>${item.permissions}</td>
+    <td>${item.issuesVisibility}</td>
+    <td>${item.usersVisibility}</td>
+    <td>${item.timeEntriesVisibility}</td>
+    <td>${item.allRolesManaged}</td>
+    <td>
+      <a href="${s.url(Controllers.roles.showUrl, "id" -> item.id)}" class="btn btn-default">${s.i18n.getOrKey("detail")}</a>
+      <a href="${s.url(Controllers.roles.editUrl, "id" -> item.id)}" class="btn btn-info">${s.i18n.getOrKey("edit")}</a>
+      <a data-method="delete" data-confirm="${s.i18n.getOrKey("role.delete.confirm")}"
+        href="${s.url(Controllers.roles.destroyUrl, "id" -> item.id)}" rel="nofollow" class="btn btn-danger">${s.i18n.getOrKey("delete")}</a>
+    </td>
+  </tr>
+  #end
+  #if (items.isEmpty)
+  <tr>
+    <td colspan="11">${s.i18n.getOrKey("empty")}</td>
+  </tr>
+  #end
+</tbody>
+</table>
+
+<a href="${s.url(Controllers.roles.newUrl)}" class="btn btn-primary">${s.i18n.getOrKey("new")}</a>

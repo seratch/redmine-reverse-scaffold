@@ -1,0 +1,127 @@
+<%@val s: skinny.Skinny %>
+<%@val keyAndErrorMessages: skinny.KeyAndErrorMessages %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<div class="form-group">
+  <label class="control-label" for="issued">
+    ${s.i18n.getOrKey("openIdAuthenticationAssociation.issued")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("issued")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="issued" class="form-control" value="${s.params.issued}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("issued"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("issued"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="lifetime">
+    ${s.i18n.getOrKey("openIdAuthenticationAssociation.lifetime")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("lifetime")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="lifetime" class="form-control" value="${s.params.lifetime}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("lifetime"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("lifetime"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="handle">
+    ${s.i18n.getOrKey("openIdAuthenticationAssociation.handle")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("handle")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="handle" class="form-control" value="${s.params.handle}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("handle"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("handle"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="assoc_type">
+    ${s.i18n.getOrKey("openIdAuthenticationAssociation.assocType")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("assoc_type")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="assoc_type" class="form-control" value="${s.params.assoc_type}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("assoc_type"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("assoc_type"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="server_url">
+    ${s.i18n.getOrKey("openIdAuthenticationAssociation.serverUrl")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("server_url")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="server_url" class="form-control" value="${s.params.server_url}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("server_url"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("server_url"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="secret">
+    ${s.i18n.getOrKey("openIdAuthenticationAssociation.secret")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("secret")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="secret" class="form-control" value="${s.params.secret}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("secret"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("secret"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-actions">
+  ${unescape(s.csrfHiddenInputTag)}
+  <input type="submit" class="btn btn-primary" value="${s.i18n.getOrKey("submit")}">
+  <a class="btn btn-default" href="${s.url(Controllers.openIdAuthenticationAssociations.indexUrl)}">${s.i18n.getOrKey("cancel")}</a>
+</div>

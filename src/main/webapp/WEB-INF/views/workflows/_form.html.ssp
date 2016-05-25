@@ -1,0 +1,166 @@
+<%@val s: skinny.Skinny %>
+<%@val keyAndErrorMessages: skinny.KeyAndErrorMessages %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<div class="form-group">
+  <label class="control-label" for="tracker_id">
+    ${s.i18n.getOrKey("workflow.trackerId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("tracker_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="tracker_id" class="form-control" value="${s.params.tracker_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("tracker_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("tracker_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="old_status_id">
+    ${s.i18n.getOrKey("workflow.oldStatusId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("old_status_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="old_status_id" class="form-control" value="${s.params.old_status_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("old_status_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("old_status_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="new_status_id">
+    ${s.i18n.getOrKey("workflow.newStatusId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("new_status_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="new_status_id" class="form-control" value="${s.params.new_status_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("new_status_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("new_status_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="role_id">
+    ${s.i18n.getOrKey("workflow.roleId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("role_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="role_id" class="form-control" value="${s.params.role_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("role_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("role_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="assignee">
+    ${s.i18n.getOrKey("workflow.assignee")}
+  </label>
+  <div class="controls row">
+    <div class="col-xs-12">
+      <input type="checkbox" name="assignee" value="true" #if(s.params.assignee==Some(true)) checked #end />
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="author">
+    ${s.i18n.getOrKey("workflow.author")}
+  </label>
+  <div class="controls row">
+    <div class="col-xs-12">
+      <input type="checkbox" name="author" value="true" #if(s.params.author==Some(true)) checked #end />
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="the_type">
+    ${s.i18n.getOrKey("workflow.theType")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("the_type")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="the_type" class="form-control" value="${s.params.the_type}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("the_type"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("the_type"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="field_name">
+    ${s.i18n.getOrKey("workflow.fieldName")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("field_name")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="field_name" class="form-control" value="${s.params.field_name}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("field_name"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("field_name"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="rule">
+    ${s.i18n.getOrKey("workflow.rule")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("rule")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="rule" class="form-control" value="${s.params.rule}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("rule"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("rule"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-actions">
+  ${unescape(s.csrfHiddenInputTag)}
+  <input type="submit" class="btn btn-primary" value="${s.i18n.getOrKey("submit")}">
+  <a class="btn btn-default" href="${s.url(Controllers.workflows.indexUrl)}">${s.i18n.getOrKey("cancel")}</a>
+</div>

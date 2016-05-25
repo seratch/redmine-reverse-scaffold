@@ -1,0 +1,98 @@
+<%@val item: model.User %>
+<%@val s: skinny.Skinny %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<h3>${s.i18n.getOrKey("user.detail")}</h3>
+<hr/>
+#for (notice <- s.flash.notice)
+  <p class="alert alert-info">${notice}</p>
+#end
+<table class="table table-bordered">
+<tbody>
+  <tr>
+    <th>${s.i18n.getOrKey("user.id")}</th>
+    <td>${item.id}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("user.login")}</th>
+    <td>${item.login}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("user.hashedPassword")}</th>
+    <td>${item.hashedPassword}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("user.firstname")}</th>
+    <td>${item.firstname}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("user.lastname")}</th>
+    <td>${item.lastname}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("user.admin")}</th>
+    <td>${item.admin}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("user.status")}</th>
+    <td>${item.status}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("user.lastLoginOn")}</th>
+    <td>${item.lastLoginOn}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("user.language")}</th>
+    <td>${item.language}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("user.authSourceId")}</th>
+    <td>${item.authSourceId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("user.createdOn")}</th>
+    <td>${item.createdOn}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("user.updatedOn")}</th>
+    <td>${item.updatedOn}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("user.theType")}</th>
+    <td>${item.theType}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("user.identityUrl")}</th>
+    <td>${item.identityUrl}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("user.mailNotification")}</th>
+    <td>${item.mailNotification}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("user.salt")}</th>
+    <td>${item.salt}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("user.mustChangePasswd")}</th>
+    <td>${item.mustChangePasswd}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("user.passwdChangedOn")}</th>
+    <td>${item.passwdChangedOn}</td>
+  </tr>
+
+</tbody>
+</table>
+
+<hr/>
+<div class="form-actions">
+  <a class="btn btn-default" href="${s.url(Controllers.users.indexUrl)}">${s.i18n.getOrKey("backToList")}</a>
+  <a href="${s.url(Controllers.users.editUrl, "id" -> item.id)}" class="btn btn-info">${s.i18n.getOrKey("edit")}</a>
+  <a data-method="delete" data-confirm="${s.i18n.getOrKey("user.delete.confirm")}"
+    href="${s.url(Controllers.users.destroyUrl, "id" -> item.id)}" rel="nofollow" class="btn btn-danger">${s.i18n.getOrKey("delete")}</a>
+</div>

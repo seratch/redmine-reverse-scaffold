@@ -1,0 +1,114 @@
+<%@val s: skinny.Skinny %>
+<%@val keyAndErrorMessages: skinny.KeyAndErrorMessages %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<div class="form-group">
+  <label class="control-label" for="wiki_id">
+    ${s.i18n.getOrKey("wikiPage.wikiId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("wiki_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="wiki_id" class="form-control" value="${s.params.wiki_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("wiki_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("wiki_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="title">
+    ${s.i18n.getOrKey("wikiPage.title")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("title")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="title" class="form-control" value="${s.params.title}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("title"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("title"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label">
+    ${s.i18n.getOrKey("wikiPage.createdOn")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("created_on")) "has-error" else ""}">
+      <div class="col-xs-2">
+        <input type="text" name="created_on_year"   class="form-control" value="${s.params.created_on_year}"   placeholder="${s.i18n.getOrKey("year")}"  maxlength=4 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="created_on_month"  class="form-control" value="${s.params.created_on_month}"  placeholder="${s.i18n.getOrKey("month")}" maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="created_on_day"    class="form-control" value="${s.params.created_on_day}"    placeholder="${s.i18n.getOrKey("day")}"   maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="created_on_hour"   class="form-control" value="${s.params.created_on_hour}"   placeholder="${s.i18n.getOrKey("hour")}"  maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="created_on_minute" class="form-control" value="${s.params.created_on_minute}" placeholder="${s.i18n.getOrKey("minute")}" maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="created_on_second" class="form-control" value="${s.params.created_on_second}" placeholder="${s.i18n.getOrKey("second")}" maxlength=2 />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("created_on"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("created_on"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="is_protected">
+    ${s.i18n.getOrKey("wikiPage.isProtected")}
+  </label>
+  <div class="controls row">
+    <div class="col-xs-12">
+      <input type="checkbox" name="is_protected" value="true" #if(s.params.is_protected==Some(true)) checked #end />
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="parent_id">
+    ${s.i18n.getOrKey("wikiPage.parentId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("parent_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="parent_id" class="form-control" value="${s.params.parent_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("parent_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("parent_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-actions">
+  ${unescape(s.csrfHiddenInputTag)}
+  <input type="submit" class="btn btn-primary" value="${s.i18n.getOrKey("submit")}">
+  <a class="btn btn-default" href="${s.url(Controllers.wikiPages.indexUrl)}">${s.i18n.getOrKey("cancel")}</a>
+</div>

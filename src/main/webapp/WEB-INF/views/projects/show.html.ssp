@@ -1,0 +1,82 @@
+<%@val item: model.Project %>
+<%@val s: skinny.Skinny %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<h3>${s.i18n.getOrKey("project.detail")}</h3>
+<hr/>
+#for (notice <- s.flash.notice)
+  <p class="alert alert-info">${notice}</p>
+#end
+<table class="table table-bordered">
+<tbody>
+  <tr>
+    <th>${s.i18n.getOrKey("project.id")}</th>
+    <td>${item.id}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("project.name")}</th>
+    <td>${item.name}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("project.description")}</th>
+    <td>${item.description}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("project.homepage")}</th>
+    <td>${item.homepage}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("project.isPublic")}</th>
+    <td>${item.isPublic}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("project.parentId")}</th>
+    <td>${item.parentId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("project.createdOn")}</th>
+    <td>${item.createdOn}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("project.updatedOn")}</th>
+    <td>${item.updatedOn}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("project.identifier")}</th>
+    <td>${item.identifier}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("project.status")}</th>
+    <td>${item.status}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("project.lft")}</th>
+    <td>${item.lft}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("project.rgt")}</th>
+    <td>${item.rgt}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("project.inheritMembers")}</th>
+    <td>${item.inheritMembers}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("project.defaultVersionId")}</th>
+    <td>${item.defaultVersionId}</td>
+  </tr>
+
+</tbody>
+</table>
+
+<hr/>
+<div class="form-actions">
+  <a class="btn btn-default" href="${s.url(Controllers.projects.indexUrl)}">${s.i18n.getOrKey("backToList")}</a>
+  <a href="${s.url(Controllers.projects.editUrl, "id" -> item.id)}" class="btn btn-info">${s.i18n.getOrKey("edit")}</a>
+  <a data-method="delete" data-confirm="${s.i18n.getOrKey("project.delete.confirm")}"
+    href="${s.url(Controllers.projects.destroyUrl, "id" -> item.id)}" rel="nofollow" class="btn btn-danger">${s.i18n.getOrKey("delete")}</a>
+</div>

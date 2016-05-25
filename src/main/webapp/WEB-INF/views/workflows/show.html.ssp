@@ -1,0 +1,66 @@
+<%@val item: model.Workflow %>
+<%@val s: skinny.Skinny %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<h3>${s.i18n.getOrKey("workflow.detail")}</h3>
+<hr/>
+#for (notice <- s.flash.notice)
+  <p class="alert alert-info">${notice}</p>
+#end
+<table class="table table-bordered">
+<tbody>
+  <tr>
+    <th>${s.i18n.getOrKey("workflow.id")}</th>
+    <td>${item.id}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("workflow.trackerId")}</th>
+    <td>${item.trackerId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("workflow.oldStatusId")}</th>
+    <td>${item.oldStatusId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("workflow.newStatusId")}</th>
+    <td>${item.newStatusId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("workflow.roleId")}</th>
+    <td>${item.roleId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("workflow.assignee")}</th>
+    <td>${item.assignee}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("workflow.author")}</th>
+    <td>${item.author}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("workflow.theType")}</th>
+    <td>${item.theType}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("workflow.fieldName")}</th>
+    <td>${item.fieldName}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("workflow.rule")}</th>
+    <td>${item.rule}</td>
+  </tr>
+
+</tbody>
+</table>
+
+<hr/>
+<div class="form-actions">
+  <a class="btn btn-default" href="${s.url(Controllers.workflows.indexUrl)}">${s.i18n.getOrKey("backToList")}</a>
+  <a href="${s.url(Controllers.workflows.editUrl, "id" -> item.id)}" class="btn btn-info">${s.i18n.getOrKey("edit")}</a>
+  <a data-method="delete" data-confirm="${s.i18n.getOrKey("workflow.delete.confirm")}"
+    href="${s.url(Controllers.workflows.destroyUrl, "id" -> item.id)}" rel="nofollow" class="btn btn-danger">${s.i18n.getOrKey("delete")}</a>
+</div>

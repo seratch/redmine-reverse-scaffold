@@ -1,0 +1,62 @@
+<%@val item: model.Import %>
+<%@val s: skinny.Skinny %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<h3>${s.i18n.getOrKey("import.detail")}</h3>
+<hr/>
+#for (notice <- s.flash.notice)
+  <p class="alert alert-info">${notice}</p>
+#end
+<table class="table table-bordered">
+<tbody>
+  <tr>
+    <th>${s.i18n.getOrKey("import.id")}</th>
+    <td>${item.id}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("import.theType")}</th>
+    <td>${item.theType}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("import.userId")}</th>
+    <td>${item.userId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("import.filename")}</th>
+    <td>${item.filename}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("import.settings")}</th>
+    <td>${item.settings}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("import.totalItems")}</th>
+    <td>${item.totalItems}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("import.finished")}</th>
+    <td>${item.finished}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("import.createdAt")}</th>
+    <td>${item.createdAt}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("import.updatedAt")}</th>
+    <td>${item.updatedAt}</td>
+  </tr>
+
+</tbody>
+</table>
+
+<hr/>
+<div class="form-actions">
+  <a class="btn btn-default" href="${s.url(Controllers.imports.indexUrl)}">${s.i18n.getOrKey("backToList")}</a>
+  <a href="${s.url(Controllers.imports.editUrl, "id" -> item.id)}" class="btn btn-info">${s.i18n.getOrKey("edit")}</a>
+  <a data-method="delete" data-confirm="${s.i18n.getOrKey("import.delete.confirm")}"
+    href="${s.url(Controllers.imports.destroyUrl, "id" -> item.id)}" rel="nofollow" class="btn btn-danger">${s.i18n.getOrKey("delete")}</a>
+</div>

@@ -1,0 +1,50 @@
+<%@val item: model.JournalDetail %>
+<%@val s: skinny.Skinny %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<h3>${s.i18n.getOrKey("journalDetail.detail")}</h3>
+<hr/>
+#for (notice <- s.flash.notice)
+  <p class="alert alert-info">${notice}</p>
+#end
+<table class="table table-bordered">
+<tbody>
+  <tr>
+    <th>${s.i18n.getOrKey("journalDetail.id")}</th>
+    <td>${item.id}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("journalDetail.journalId")}</th>
+    <td>${item.journalId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("journalDetail.property")}</th>
+    <td>${item.property}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("journalDetail.propKey")}</th>
+    <td>${item.propKey}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("journalDetail.oldValue")}</th>
+    <td>${item.oldValue}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("journalDetail.value")}</th>
+    <td>${item.value}</td>
+  </tr>
+
+</tbody>
+</table>
+
+<hr/>
+<div class="form-actions">
+  <a class="btn btn-default" href="${s.url(Controllers.journalDetails.indexUrl)}">${s.i18n.getOrKey("backToList")}</a>
+  <a href="${s.url(Controllers.journalDetails.editUrl, "id" -> item.id)}" class="btn btn-info">${s.i18n.getOrKey("edit")}</a>
+  <a data-method="delete" data-confirm="${s.i18n.getOrKey("journalDetail.delete.confirm")}"
+    href="${s.url(Controllers.journalDetails.destroyUrl, "id" -> item.id)}" rel="nofollow" class="btn btn-danger">${s.i18n.getOrKey("delete")}</a>
+</div>

@@ -1,0 +1,46 @@
+<%@val item: model.UserPreference %>
+<%@val s: skinny.Skinny %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<h3>${s.i18n.getOrKey("userPreference.detail")}</h3>
+<hr/>
+#for (notice <- s.flash.notice)
+  <p class="alert alert-info">${notice}</p>
+#end
+<table class="table table-bordered">
+<tbody>
+  <tr>
+    <th>${s.i18n.getOrKey("userPreference.id")}</th>
+    <td>${item.id}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("userPreference.userId")}</th>
+    <td>${item.userId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("userPreference.others")}</th>
+    <td>${item.others}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("userPreference.hideMail")}</th>
+    <td>${item.hideMail}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("userPreference.timeZone")}</th>
+    <td>${item.timeZone}</td>
+  </tr>
+
+</tbody>
+</table>
+
+<hr/>
+<div class="form-actions">
+  <a class="btn btn-default" href="${s.url(Controllers.userPreferences.indexUrl)}">${s.i18n.getOrKey("backToList")}</a>
+  <a href="${s.url(Controllers.userPreferences.editUrl, "id" -> item.id)}" class="btn btn-info">${s.i18n.getOrKey("edit")}</a>
+  <a data-method="delete" data-confirm="${s.i18n.getOrKey("userPreference.delete.confirm")}"
+    href="${s.url(Controllers.userPreferences.destroyUrl, "id" -> item.id)}" rel="nofollow" class="btn btn-danger">${s.i18n.getOrKey("delete")}</a>
+</div>

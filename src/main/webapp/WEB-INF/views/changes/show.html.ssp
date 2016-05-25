@@ -1,0 +1,58 @@
+<%@val item: model.Change %>
+<%@val s: skinny.Skinny %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<h3>${s.i18n.getOrKey("change.detail")}</h3>
+<hr/>
+#for (notice <- s.flash.notice)
+  <p class="alert alert-info">${notice}</p>
+#end
+<table class="table table-bordered">
+<tbody>
+  <tr>
+    <th>${s.i18n.getOrKey("change.id")}</th>
+    <td>${item.id}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("change.changesetId")}</th>
+    <td>${item.changesetId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("change.action")}</th>
+    <td>${item.action}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("change.path")}</th>
+    <td>${item.path}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("change.fromPath")}</th>
+    <td>${item.fromPath}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("change.fromRevision")}</th>
+    <td>${item.fromRevision}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("change.revision")}</th>
+    <td>${item.revision}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("change.branch")}</th>
+    <td>${item.branch}</td>
+  </tr>
+
+</tbody>
+</table>
+
+<hr/>
+<div class="form-actions">
+  <a class="btn btn-default" href="${s.url(Controllers.changes.indexUrl)}">${s.i18n.getOrKey("backToList")}</a>
+  <a href="${s.url(Controllers.changes.editUrl, "id" -> item.id)}" class="btn btn-info">${s.i18n.getOrKey("edit")}</a>
+  <a data-method="delete" data-confirm="${s.i18n.getOrKey("change.delete.confirm")}"
+    href="${s.url(Controllers.changes.destroyUrl, "id" -> item.id)}" rel="nofollow" class="btn btn-danger">${s.i18n.getOrKey("delete")}</a>
+</div>

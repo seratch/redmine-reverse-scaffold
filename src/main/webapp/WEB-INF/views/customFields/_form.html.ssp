@@ -1,0 +1,292 @@
+<%@val s: skinny.Skinny %>
+<%@val keyAndErrorMessages: skinny.KeyAndErrorMessages %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<div class="form-group">
+  <label class="control-label" for="the_type">
+    ${s.i18n.getOrKey("customField.theType")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("the_type")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="the_type" class="form-control" value="${s.params.the_type}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("the_type"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("the_type"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="name">
+    ${s.i18n.getOrKey("customField.name")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("name")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="name" class="form-control" value="${s.params.name}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("name"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("name"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="field_format">
+    ${s.i18n.getOrKey("customField.fieldFormat")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("field_format")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="field_format" class="form-control" value="${s.params.field_format}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("field_format"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("field_format"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="possible_values">
+    ${s.i18n.getOrKey("customField.possibleValues")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("possible_values")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="possible_values" class="form-control" value="${s.params.possible_values}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("possible_values"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("possible_values"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="regexp">
+    ${s.i18n.getOrKey("customField.regexp")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("regexp")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="regexp" class="form-control" value="${s.params.regexp}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("regexp"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("regexp"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="min_length">
+    ${s.i18n.getOrKey("customField.minLength")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("min_length")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="min_length" class="form-control" value="${s.params.min_length}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("min_length"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("min_length"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="max_length">
+    ${s.i18n.getOrKey("customField.maxLength")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("max_length")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="max_length" class="form-control" value="${s.params.max_length}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("max_length"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("max_length"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="is_required">
+    ${s.i18n.getOrKey("customField.isRequired")}
+  </label>
+  <div class="controls row">
+    <div class="col-xs-12">
+      <input type="checkbox" name="is_required" value="true" #if(s.params.is_required==Some(true)) checked #end />
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="is_for_all">
+    ${s.i18n.getOrKey("customField.isForAll")}
+  </label>
+  <div class="controls row">
+    <div class="col-xs-12">
+      <input type="checkbox" name="is_for_all" value="true" #if(s.params.is_for_all==Some(true)) checked #end />
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="is_filter">
+    ${s.i18n.getOrKey("customField.isFilter")}
+  </label>
+  <div class="controls row">
+    <div class="col-xs-12">
+      <input type="checkbox" name="is_filter" value="true" #if(s.params.is_filter==Some(true)) checked #end />
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="position">
+    ${s.i18n.getOrKey("customField.position")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("position")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="position" class="form-control" value="${s.params.position}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("position"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("position"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="searchable">
+    ${s.i18n.getOrKey("customField.searchable")}
+  </label>
+  <div class="controls row">
+    <div class="col-xs-12">
+      <input type="checkbox" name="searchable" value="true" #if(s.params.searchable==Some(true)) checked #end />
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="default_value">
+    ${s.i18n.getOrKey("customField.defaultValue")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("default_value")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="default_value" class="form-control" value="${s.params.default_value}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("default_value"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("default_value"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="editable">
+    ${s.i18n.getOrKey("customField.editable")}
+  </label>
+  <div class="controls row">
+    <div class="col-xs-12">
+      <input type="checkbox" name="editable" value="true" #if(s.params.editable==Some(true)) checked #end />
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="visible">
+    ${s.i18n.getOrKey("customField.visible")}
+  </label>
+  <div class="controls row">
+    <div class="col-xs-12">
+      <input type="checkbox" name="visible" value="true" #if(s.params.visible==Some(true)) checked #end />
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="multiple">
+    ${s.i18n.getOrKey("customField.multiple")}
+  </label>
+  <div class="controls row">
+    <div class="col-xs-12">
+      <input type="checkbox" name="multiple" value="true" #if(s.params.multiple==Some(true)) checked #end />
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="format_store">
+    ${s.i18n.getOrKey("customField.formatStore")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("format_store")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="format_store" class="form-control" value="${s.params.format_store}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("format_store"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("format_store"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="description">
+    ${s.i18n.getOrKey("customField.description")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("description")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="description" class="form-control" value="${s.params.description}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("description"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("description"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-actions">
+  ${unescape(s.csrfHiddenInputTag)}
+  <input type="submit" class="btn btn-primary" value="${s.i18n.getOrKey("submit")}">
+  <a class="btn btn-default" href="${s.url(Controllers.customFields.indexUrl)}">${s.i18n.getOrKey("cancel")}</a>
+</div>

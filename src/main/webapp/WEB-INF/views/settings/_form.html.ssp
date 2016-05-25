@@ -1,0 +1,85 @@
+<%@val s: skinny.Skinny %>
+<%@val keyAndErrorMessages: skinny.KeyAndErrorMessages %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<div class="form-group">
+  <label class="control-label" for="name">
+    ${s.i18n.getOrKey("setting.name")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("name")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="name" class="form-control" value="${s.params.name}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("name"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("name"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="value">
+    ${s.i18n.getOrKey("setting.value")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("value")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="value" class="form-control" value="${s.params.value}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("value"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("value"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label">
+    ${s.i18n.getOrKey("setting.updatedOn")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("updated_on")) "has-error" else ""}">
+      <div class="col-xs-2">
+        <input type="text" name="updated_on_year"   class="form-control" value="${s.params.updated_on_year}"   placeholder="${s.i18n.getOrKey("year")}"  maxlength=4 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="updated_on_month"  class="form-control" value="${s.params.updated_on_month}"  placeholder="${s.i18n.getOrKey("month")}" maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="updated_on_day"    class="form-control" value="${s.params.updated_on_day}"    placeholder="${s.i18n.getOrKey("day")}"   maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="updated_on_hour"   class="form-control" value="${s.params.updated_on_hour}"   placeholder="${s.i18n.getOrKey("hour")}"  maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="updated_on_minute" class="form-control" value="${s.params.updated_on_minute}" placeholder="${s.i18n.getOrKey("minute")}" maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="updated_on_second" class="form-control" value="${s.params.updated_on_second}" placeholder="${s.i18n.getOrKey("second")}" maxlength=2 />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("updated_on"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("updated_on"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-actions">
+  ${unescape(s.csrfHiddenInputTag)}
+  <input type="submit" class="btn btn-primary" value="${s.i18n.getOrKey("submit")}">
+  <a class="btn btn-default" href="${s.url(Controllers.settings.indexUrl)}">${s.i18n.getOrKey("cancel")}</a>
+</div>

@@ -1,0 +1,54 @@
+<%@val item: model.Tracker %>
+<%@val s: skinny.Skinny %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<h3>${s.i18n.getOrKey("tracker.detail")}</h3>
+<hr/>
+#for (notice <- s.flash.notice)
+  <p class="alert alert-info">${notice}</p>
+#end
+<table class="table table-bordered">
+<tbody>
+  <tr>
+    <th>${s.i18n.getOrKey("tracker.id")}</th>
+    <td>${item.id}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("tracker.name")}</th>
+    <td>${item.name}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("tracker.isInChlog")}</th>
+    <td>${item.isInChlog}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("tracker.position")}</th>
+    <td>${item.position}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("tracker.isInRoadmap")}</th>
+    <td>${item.isInRoadmap}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("tracker.fieldsBits")}</th>
+    <td>${item.fieldsBits}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("tracker.defaultStatusId")}</th>
+    <td>${item.defaultStatusId}</td>
+  </tr>
+
+</tbody>
+</table>
+
+<hr/>
+<div class="form-actions">
+  <a class="btn btn-default" href="${s.url(Controllers.trackers.indexUrl)}">${s.i18n.getOrKey("backToList")}</a>
+  <a href="${s.url(Controllers.trackers.editUrl, "id" -> item.id)}" class="btn btn-info">${s.i18n.getOrKey("edit")}</a>
+  <a data-method="delete" data-confirm="${s.i18n.getOrKey("tracker.delete.confirm")}"
+    href="${s.url(Controllers.trackers.destroyUrl, "id" -> item.id)}" rel="nofollow" class="btn btn-danger">${s.i18n.getOrKey("delete")}</a>
+</div>

@@ -1,0 +1,90 @@
+<%@val item: model.AuthSource %>
+<%@val s: skinny.Skinny %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<h3>${s.i18n.getOrKey("authSource.detail")}</h3>
+<hr/>
+#for (notice <- s.flash.notice)
+  <p class="alert alert-info">${notice}</p>
+#end
+<table class="table table-bordered">
+<tbody>
+  <tr>
+    <th>${s.i18n.getOrKey("authSource.id")}</th>
+    <td>${item.id}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("authSource.theType")}</th>
+    <td>${item.theType}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("authSource.name")}</th>
+    <td>${item.name}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("authSource.host")}</th>
+    <td>${item.host}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("authSource.port")}</th>
+    <td>${item.port}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("authSource.account")}</th>
+    <td>${item.account}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("authSource.accountPassword")}</th>
+    <td>${item.accountPassword}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("authSource.baseDn")}</th>
+    <td>${item.baseDn}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("authSource.attrLogin")}</th>
+    <td>${item.attrLogin}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("authSource.attrFirstname")}</th>
+    <td>${item.attrFirstname}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("authSource.attrLastname")}</th>
+    <td>${item.attrLastname}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("authSource.attrMail")}</th>
+    <td>${item.attrMail}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("authSource.ontheflyRegister")}</th>
+    <td>${item.ontheflyRegister}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("authSource.tls")}</th>
+    <td>${item.tls}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("authSource.filter")}</th>
+    <td>${item.filter}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("authSource.timeout")}</th>
+    <td>${item.timeout}</td>
+  </tr>
+
+</tbody>
+</table>
+
+<hr/>
+<div class="form-actions">
+  <a class="btn btn-default" href="${s.url(Controllers.authSources.indexUrl)}">${s.i18n.getOrKey("backToList")}</a>
+  <a href="${s.url(Controllers.authSources.editUrl, "id" -> item.id)}" class="btn btn-info">${s.i18n.getOrKey("edit")}</a>
+  <a data-method="delete" data-confirm="${s.i18n.getOrKey("authSource.delete.confirm")}"
+    href="${s.url(Controllers.authSources.destroyUrl, "id" -> item.id)}" rel="nofollow" class="btn btn-danger">${s.i18n.getOrKey("delete")}</a>
+</div>

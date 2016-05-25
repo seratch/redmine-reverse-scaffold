@@ -1,0 +1,46 @@
+<%@val item: model.ImportItem %>
+<%@val s: skinny.Skinny %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<h3>${s.i18n.getOrKey("importItem.detail")}</h3>
+<hr/>
+#for (notice <- s.flash.notice)
+  <p class="alert alert-info">${notice}</p>
+#end
+<table class="table table-bordered">
+<tbody>
+  <tr>
+    <th>${s.i18n.getOrKey("importItem.id")}</th>
+    <td>${item.id}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("importItem.importId")}</th>
+    <td>${item.importId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("importItem.position")}</th>
+    <td>${item.position}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("importItem.objId")}</th>
+    <td>${item.objId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("importItem.message")}</th>
+    <td>${item.message}</td>
+  </tr>
+
+</tbody>
+</table>
+
+<hr/>
+<div class="form-actions">
+  <a class="btn btn-default" href="${s.url(Controllers.importItems.indexUrl)}">${s.i18n.getOrKey("backToList")}</a>
+  <a href="${s.url(Controllers.importItems.editUrl, "id" -> item.id)}" class="btn btn-info">${s.i18n.getOrKey("edit")}</a>
+  <a data-method="delete" data-confirm="${s.i18n.getOrKey("importItem.delete.confirm")}"
+    href="${s.url(Controllers.importItems.destroyUrl, "id" -> item.id)}" rel="nofollow" class="btn btn-danger">${s.i18n.getOrKey("delete")}</a>
+</div>

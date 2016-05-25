@@ -1,0 +1,109 @@
+<%@val s: skinny.Skinny %>
+<%@val keyAndErrorMessages: skinny.KeyAndErrorMessages %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<div class="form-group">
+  <label class="control-label" for="name">
+    ${s.i18n.getOrKey("tracker.name")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("name")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="name" class="form-control" value="${s.params.name}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("name"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("name"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="is_in_chlog">
+    ${s.i18n.getOrKey("tracker.isInChlog")}
+  </label>
+  <div class="controls row">
+    <div class="col-xs-12">
+      <input type="checkbox" name="is_in_chlog" value="true" #if(s.params.is_in_chlog==Some(true)) checked #end />
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="position">
+    ${s.i18n.getOrKey("tracker.position")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("position")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="position" class="form-control" value="${s.params.position}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("position"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("position"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="is_in_roadmap">
+    ${s.i18n.getOrKey("tracker.isInRoadmap")}
+  </label>
+  <div class="controls row">
+    <div class="col-xs-12">
+      <input type="checkbox" name="is_in_roadmap" value="true" #if(s.params.is_in_roadmap==Some(true)) checked #end />
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="fields_bits">
+    ${s.i18n.getOrKey("tracker.fieldsBits")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("fields_bits")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="fields_bits" class="form-control" value="${s.params.fields_bits}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("fields_bits"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("fields_bits"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="default_status_id">
+    ${s.i18n.getOrKey("tracker.defaultStatusId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("default_status_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="default_status_id" class="form-control" value="${s.params.default_status_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("default_status_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("default_status_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-actions">
+  ${unescape(s.csrfHiddenInputTag)}
+  <input type="submit" class="btn btn-primary" value="${s.i18n.getOrKey("submit")}">
+  <a class="btn btn-default" href="${s.url(Controllers.trackers.indexUrl)}">${s.i18n.getOrKey("cancel")}</a>
+</div>

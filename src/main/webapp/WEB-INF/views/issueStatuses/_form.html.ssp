@@ -1,0 +1,80 @@
+<%@val s: skinny.Skinny %>
+<%@val keyAndErrorMessages: skinny.KeyAndErrorMessages %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<div class="form-group">
+  <label class="control-label" for="name">
+    ${s.i18n.getOrKey("issueStatus.name")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("name")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="name" class="form-control" value="${s.params.name}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("name"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("name"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="is_closed">
+    ${s.i18n.getOrKey("issueStatus.isClosed")}
+  </label>
+  <div class="controls row">
+    <div class="col-xs-12">
+      <input type="checkbox" name="is_closed" value="true" #if(s.params.is_closed==Some(true)) checked #end />
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="position">
+    ${s.i18n.getOrKey("issueStatus.position")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("position")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="position" class="form-control" value="${s.params.position}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("position"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("position"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="default_done_ratio">
+    ${s.i18n.getOrKey("issueStatus.defaultDoneRatio")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("default_done_ratio")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="default_done_ratio" class="form-control" value="${s.params.default_done_ratio}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("default_done_ratio"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("default_done_ratio"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-actions">
+  ${unescape(s.csrfHiddenInputTag)}
+  <input type="submit" class="btn btn-primary" value="${s.i18n.getOrKey("submit")}">
+  <a class="btn btn-default" href="${s.url(Controllers.issueStatuses.indexUrl)}">${s.i18n.getOrKey("cancel")}</a>
+</div>

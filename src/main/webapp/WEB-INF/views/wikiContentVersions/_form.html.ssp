@@ -1,0 +1,180 @@
+<%@val s: skinny.Skinny %>
+<%@val keyAndErrorMessages: skinny.KeyAndErrorMessages %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<div class="form-group">
+  <label class="control-label" for="wiki_content_id">
+    ${s.i18n.getOrKey("wikiContentVersion.wikiContentId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("wiki_content_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="wiki_content_id" class="form-control" value="${s.params.wiki_content_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("wiki_content_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("wiki_content_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="page_id">
+    ${s.i18n.getOrKey("wikiContentVersion.pageId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("page_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="page_id" class="form-control" value="${s.params.page_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("page_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("page_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="author_id">
+    ${s.i18n.getOrKey("wikiContentVersion.authorId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("author_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="author_id" class="form-control" value="${s.params.author_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("author_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("author_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="data">
+    ${s.i18n.getOrKey("wikiContentVersion.data")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("data")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="data" class="form-control" value="${s.params.data}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("data"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("data"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="compression">
+    ${s.i18n.getOrKey("wikiContentVersion.compression")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("compression")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="compression" class="form-control" value="${s.params.compression}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("compression"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("compression"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="comments">
+    ${s.i18n.getOrKey("wikiContentVersion.comments")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("comments")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="comments" class="form-control" value="${s.params.comments}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("comments"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("comments"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label">
+    ${s.i18n.getOrKey("wikiContentVersion.updatedOn")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("updated_on")) "has-error" else ""}">
+      <div class="col-xs-2">
+        <input type="text" name="updated_on_year"   class="form-control" value="${s.params.updated_on_year}"   placeholder="${s.i18n.getOrKey("year")}"  maxlength=4 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="updated_on_month"  class="form-control" value="${s.params.updated_on_month}"  placeholder="${s.i18n.getOrKey("month")}" maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="updated_on_day"    class="form-control" value="${s.params.updated_on_day}"    placeholder="${s.i18n.getOrKey("day")}"   maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="updated_on_hour"   class="form-control" value="${s.params.updated_on_hour}"   placeholder="${s.i18n.getOrKey("hour")}"  maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="updated_on_minute" class="form-control" value="${s.params.updated_on_minute}" placeholder="${s.i18n.getOrKey("minute")}" maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="updated_on_second" class="form-control" value="${s.params.updated_on_second}" placeholder="${s.i18n.getOrKey("second")}" maxlength=2 />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("updated_on"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("updated_on"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="version">
+    ${s.i18n.getOrKey("wikiContentVersion.version")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("version")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="version" class="form-control" value="${s.params.version}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("version"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("version"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-actions">
+  ${unescape(s.csrfHiddenInputTag)}
+  <input type="submit" class="btn btn-primary" value="${s.i18n.getOrKey("submit")}">
+  <a class="btn btn-default" href="${s.url(Controllers.wikiContentVersions.indexUrl)}">${s.i18n.getOrKey("cancel")}</a>
+</div>

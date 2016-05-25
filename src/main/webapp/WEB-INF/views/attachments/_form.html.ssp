@@ -1,0 +1,256 @@
+<%@val s: skinny.Skinny %>
+<%@val keyAndErrorMessages: skinny.KeyAndErrorMessages %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<div class="form-group">
+  <label class="control-label" for="container_id">
+    ${s.i18n.getOrKey("attachment.containerId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("container_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="container_id" class="form-control" value="${s.params.container_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("container_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("container_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="container_type">
+    ${s.i18n.getOrKey("attachment.containerType")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("container_type")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="container_type" class="form-control" value="${s.params.container_type}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("container_type"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("container_type"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="filename">
+    ${s.i18n.getOrKey("attachment.filename")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("filename")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="filename" class="form-control" value="${s.params.filename}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("filename"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("filename"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="disk_filename">
+    ${s.i18n.getOrKey("attachment.diskFilename")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("disk_filename")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="disk_filename" class="form-control" value="${s.params.disk_filename}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("disk_filename"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("disk_filename"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="filesize">
+    ${s.i18n.getOrKey("attachment.filesize")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("filesize")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="filesize" class="form-control" value="${s.params.filesize}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("filesize"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("filesize"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="content_type">
+    ${s.i18n.getOrKey("attachment.contentType")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("content_type")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="content_type" class="form-control" value="${s.params.content_type}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("content_type"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("content_type"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="digest">
+    ${s.i18n.getOrKey("attachment.digest")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("digest")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="digest" class="form-control" value="${s.params.digest}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("digest"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("digest"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="downloads">
+    ${s.i18n.getOrKey("attachment.downloads")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("downloads")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="downloads" class="form-control" value="${s.params.downloads}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("downloads"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("downloads"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="author_id">
+    ${s.i18n.getOrKey("attachment.authorId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("author_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="author_id" class="form-control" value="${s.params.author_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("author_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("author_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label">
+    ${s.i18n.getOrKey("attachment.createdOn")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("created_on")) "has-error" else ""}">
+      <div class="col-xs-2">
+        <input type="text" name="created_on_year"   class="form-control" value="${s.params.created_on_year}"   placeholder="${s.i18n.getOrKey("year")}"  maxlength=4 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="created_on_month"  class="form-control" value="${s.params.created_on_month}"  placeholder="${s.i18n.getOrKey("month")}" maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="created_on_day"    class="form-control" value="${s.params.created_on_day}"    placeholder="${s.i18n.getOrKey("day")}"   maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="created_on_hour"   class="form-control" value="${s.params.created_on_hour}"   placeholder="${s.i18n.getOrKey("hour")}"  maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="created_on_minute" class="form-control" value="${s.params.created_on_minute}" placeholder="${s.i18n.getOrKey("minute")}" maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="created_on_second" class="form-control" value="${s.params.created_on_second}" placeholder="${s.i18n.getOrKey("second")}" maxlength=2 />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("created_on"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("created_on"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="description">
+    ${s.i18n.getOrKey("attachment.description")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("description")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="description" class="form-control" value="${s.params.description}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("description"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("description"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="disk_directory">
+    ${s.i18n.getOrKey("attachment.diskDirectory")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("disk_directory")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="disk_directory" class="form-control" value="${s.params.disk_directory}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("disk_directory"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("disk_directory"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-actions">
+  ${unescape(s.csrfHiddenInputTag)}
+  <input type="submit" class="btn btn-primary" value="${s.i18n.getOrKey("submit")}">
+  <a class="btn btn-default" href="${s.url(Controllers.attachments.indexUrl)}">${s.i18n.getOrKey("cancel")}</a>
+</div>

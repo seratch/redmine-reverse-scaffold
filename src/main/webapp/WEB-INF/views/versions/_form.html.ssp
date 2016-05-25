@@ -1,0 +1,220 @@
+<%@val s: skinny.Skinny %>
+<%@val keyAndErrorMessages: skinny.KeyAndErrorMessages %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<div class="form-group">
+  <label class="control-label" for="project_id">
+    ${s.i18n.getOrKey("version.projectId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("project_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="project_id" class="form-control" value="${s.params.project_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("project_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("project_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="name">
+    ${s.i18n.getOrKey("version.name")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("name")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="name" class="form-control" value="${s.params.name}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("name"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("name"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="description">
+    ${s.i18n.getOrKey("version.description")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("description")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="description" class="form-control" value="${s.params.description}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("description"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("description"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label">
+    ${s.i18n.getOrKey("version.effectiveDate")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("effective_date")) "has-error" else ""}">
+      <div class="col-xs-2">
+        <input type="text" name="effective_date_year"  class="form-control" value="${s.params.effective_date_year}"  placeholder="${s.i18n.getOrKey("year")}"  maxlength=4 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="effective_date_month" class="form-control" value="${s.params.effective_date_month}" placeholder="${s.i18n.getOrKey("month")}" maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="effective_date_day"   class="form-control" value="${s.params.effective_date_day}"   placeholder="${s.i18n.getOrKey("day")}"   maxlength=2 />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("effective_date"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("effective_date"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label">
+    ${s.i18n.getOrKey("version.createdOn")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("created_on")) "has-error" else ""}">
+      <div class="col-xs-2">
+        <input type="text" name="created_on_year"   class="form-control" value="${s.params.created_on_year}"   placeholder="${s.i18n.getOrKey("year")}"  maxlength=4 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="created_on_month"  class="form-control" value="${s.params.created_on_month}"  placeholder="${s.i18n.getOrKey("month")}" maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="created_on_day"    class="form-control" value="${s.params.created_on_day}"    placeholder="${s.i18n.getOrKey("day")}"   maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="created_on_hour"   class="form-control" value="${s.params.created_on_hour}"   placeholder="${s.i18n.getOrKey("hour")}"  maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="created_on_minute" class="form-control" value="${s.params.created_on_minute}" placeholder="${s.i18n.getOrKey("minute")}" maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="created_on_second" class="form-control" value="${s.params.created_on_second}" placeholder="${s.i18n.getOrKey("second")}" maxlength=2 />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("created_on"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("created_on"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label">
+    ${s.i18n.getOrKey("version.updatedOn")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("updated_on")) "has-error" else ""}">
+      <div class="col-xs-2">
+        <input type="text" name="updated_on_year"   class="form-control" value="${s.params.updated_on_year}"   placeholder="${s.i18n.getOrKey("year")}"  maxlength=4 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="updated_on_month"  class="form-control" value="${s.params.updated_on_month}"  placeholder="${s.i18n.getOrKey("month")}" maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="updated_on_day"    class="form-control" value="${s.params.updated_on_day}"    placeholder="${s.i18n.getOrKey("day")}"   maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="updated_on_hour"   class="form-control" value="${s.params.updated_on_hour}"   placeholder="${s.i18n.getOrKey("hour")}"  maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="updated_on_minute" class="form-control" value="${s.params.updated_on_minute}" placeholder="${s.i18n.getOrKey("minute")}" maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="updated_on_second" class="form-control" value="${s.params.updated_on_second}" placeholder="${s.i18n.getOrKey("second")}" maxlength=2 />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("updated_on"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("updated_on"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="wiki_page_title">
+    ${s.i18n.getOrKey("version.wikiPageTitle")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("wiki_page_title")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="wiki_page_title" class="form-control" value="${s.params.wiki_page_title}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("wiki_page_title"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("wiki_page_title"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="status">
+    ${s.i18n.getOrKey("version.status")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("status")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="status" class="form-control" value="${s.params.status}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("status"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("status"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="sharing">
+    ${s.i18n.getOrKey("version.sharing")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("sharing")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="sharing" class="form-control" value="${s.params.sharing}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("sharing"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("sharing"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-actions">
+  ${unescape(s.csrfHiddenInputTag)}
+  <input type="submit" class="btn btn-primary" value="${s.i18n.getOrKey("submit")}">
+  <a class="btn btn-default" href="${s.url(Controllers.versions.indexUrl)}">${s.i18n.getOrKey("cancel")}</a>
+</div>

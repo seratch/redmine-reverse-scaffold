@@ -1,0 +1,78 @@
+<%@val item: model.Repository %>
+<%@val s: skinny.Skinny %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<h3>${s.i18n.getOrKey("repository.detail")}</h3>
+<hr/>
+#for (notice <- s.flash.notice)
+  <p class="alert alert-info">${notice}</p>
+#end
+<table class="table table-bordered">
+<tbody>
+  <tr>
+    <th>${s.i18n.getOrKey("repository.id")}</th>
+    <td>${item.id}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("repository.projectId")}</th>
+    <td>${item.projectId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("repository.url")}</th>
+    <td>${item.url}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("repository.login")}</th>
+    <td>${item.login}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("repository.password")}</th>
+    <td>${item.password}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("repository.rootUrl")}</th>
+    <td>${item.rootUrl}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("repository.theType")}</th>
+    <td>${item.theType}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("repository.pathEncoding")}</th>
+    <td>${item.pathEncoding}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("repository.logEncoding")}</th>
+    <td>${item.logEncoding}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("repository.extraInfo")}</th>
+    <td>${item.extraInfo}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("repository.identifier")}</th>
+    <td>${item.identifier}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("repository.isDefault")}</th>
+    <td>${item.isDefault}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("repository.createdOn")}</th>
+    <td>${item.createdOn}</td>
+  </tr>
+
+</tbody>
+</table>
+
+<hr/>
+<div class="form-actions">
+  <a class="btn btn-default" href="${s.url(Controllers.repositories.indexUrl)}">${s.i18n.getOrKey("backToList")}</a>
+  <a href="${s.url(Controllers.repositories.editUrl, "id" -> item.id)}" class="btn btn-info">${s.i18n.getOrKey("edit")}</a>
+  <a data-method="delete" data-confirm="${s.i18n.getOrKey("repository.delete.confirm")}"
+    href="${s.url(Controllers.repositories.destroyUrl, "id" -> item.id)}" rel="nofollow" class="btn btn-danger">${s.i18n.getOrKey("delete")}</a>
+</div>

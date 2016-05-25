@@ -1,0 +1,122 @@
+<%@val item: model.Issue %>
+<%@val s: skinny.Skinny %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<h3>${s.i18n.getOrKey("issue.detail")}</h3>
+<hr/>
+#for (notice <- s.flash.notice)
+  <p class="alert alert-info">${notice}</p>
+#end
+<table class="table table-bordered">
+<tbody>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.id")}</th>
+    <td>${item.id}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.trackerId")}</th>
+    <td>${item.trackerId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.projectId")}</th>
+    <td>${item.projectId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.subject")}</th>
+    <td>${item.subject}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.description")}</th>
+    <td>${item.description}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.dueDate")}</th>
+    <td>${item.dueDate}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.categoryId")}</th>
+    <td>${item.categoryId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.statusId")}</th>
+    <td>${item.statusId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.assignedToId")}</th>
+    <td>${item.assignedToId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.priorityId")}</th>
+    <td>${item.priorityId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.fixedVersionId")}</th>
+    <td>${item.fixedVersionId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.authorId")}</th>
+    <td>${item.authorId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.lockVersion")}</th>
+    <td>${item.lockVersion}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.createdOn")}</th>
+    <td>${item.createdOn}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.updatedOn")}</th>
+    <td>${item.updatedOn}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.startDate")}</th>
+    <td>${item.startDate}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.doneRatio")}</th>
+    <td>${item.doneRatio}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.estimatedHours")}</th>
+    <td>${item.estimatedHours}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.parentId")}</th>
+    <td>${item.parentId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.rootId")}</th>
+    <td>${item.rootId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.lft")}</th>
+    <td>${item.lft}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.rgt")}</th>
+    <td>${item.rgt}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.isPrivate")}</th>
+    <td>${item.isPrivate}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("issue.closedOn")}</th>
+    <td>${item.closedOn}</td>
+  </tr>
+
+</tbody>
+</table>
+
+<hr/>
+<div class="form-actions">
+  <a class="btn btn-default" href="${s.url(Controllers.issues.indexUrl)}">${s.i18n.getOrKey("backToList")}</a>
+  <a href="${s.url(Controllers.issues.editUrl, "id" -> item.id)}" class="btn btn-info">${s.i18n.getOrKey("edit")}</a>
+  <a data-method="delete" data-confirm="${s.i18n.getOrKey("issue.delete.confirm")}"
+    href="${s.url(Controllers.issues.destroyUrl, "id" -> item.id)}" rel="nofollow" class="btn btn-danger">${s.i18n.getOrKey("delete")}</a>
+</div>

@@ -1,0 +1,88 @@
+<%@val s: skinny.Skinny %>
+<%@val items: Seq[model.Attachment] %>
+<%@val totalPages: Int %>
+<%@val page: Int = s.params.page.map(_.toString.toInt).getOrElse(1) %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<h3>${s.i18n.getOrKey("attachment.list")}</h3>
+<hr/>
+#for (notice <- s.flash.notice)
+  <p class="alert alert-info">${notice}</p>
+#end
+
+#if (totalPages > 1)
+  <ul class="pagination">
+    <li>
+      <a href="${s.url(Controllers.attachments.indexUrl, "page" -> 1)}">&laquo;</a>
+    </li>
+    <% val maxPage = Math.min(totalPages, if (page <= 5) 11 else page + 5) %>
+    #for (i <- Math.max(1, maxPage - 10) to maxPage)
+      <li class="${if (i == page) "active" else ""}">
+        <a href="${s.url(Controllers.attachments.indexUrl, "page" -> i)}">${i}</a>
+      </li>
+    #end
+    <li>
+      <a href="${s.url(Controllers.attachments.indexUrl, "page" -> totalPages)}">&raquo;</a>
+    </li>
+    <li>
+      <span>${Math.min(page, totalPages)} / ${totalPages}</span>
+    </li>
+  </ul>
+#end
+
+<table class="table table-bordered">
+<thead>
+  <tr>
+    <th>${s.i18n.getOrKey("attachment.id")}</th>
+    <th>${s.i18n.getOrKey("attachment.containerId")}</th>
+    <th>${s.i18n.getOrKey("attachment.containerType")}</th>
+    <th>${s.i18n.getOrKey("attachment.filename")}</th>
+    <th>${s.i18n.getOrKey("attachment.diskFilename")}</th>
+    <th>${s.i18n.getOrKey("attachment.filesize")}</th>
+    <th>${s.i18n.getOrKey("attachment.contentType")}</th>
+    <th>${s.i18n.getOrKey("attachment.digest")}</th>
+    <th>${s.i18n.getOrKey("attachment.downloads")}</th>
+    <th>${s.i18n.getOrKey("attachment.authorId")}</th>
+    <th>${s.i18n.getOrKey("attachment.createdOn")}</th>
+    <th>${s.i18n.getOrKey("attachment.description")}</th>
+    <th>${s.i18n.getOrKey("attachment.diskDirectory")}</th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+  #for (item <- items)
+  <tr>
+    <td>${item.id}</td>
+    <td>${item.containerId}</td>
+    <td>${item.containerType}</td>
+    <td>${item.filename}</td>
+    <td>${item.diskFilename}</td>
+    <td>${item.filesize}</td>
+    <td>${item.contentType}</td>
+    <td>${item.digest}</td>
+    <td>${item.downloads}</td>
+    <td>${item.authorId}</td>
+    <td>${item.createdOn}</td>
+    <td>${item.description}</td>
+    <td>${item.diskDirectory}</td>
+    <td>
+      <a href="${s.url(Controllers.attachments.showUrl, "id" -> item.id)}" class="btn btn-default">${s.i18n.getOrKey("detail")}</a>
+      <a href="${s.url(Controllers.attachments.editUrl, "id" -> item.id)}" class="btn btn-info">${s.i18n.getOrKey("edit")}</a>
+      <a data-method="delete" data-confirm="${s.i18n.getOrKey("attachment.delete.confirm")}"
+        href="${s.url(Controllers.attachments.destroyUrl, "id" -> item.id)}" rel="nofollow" class="btn btn-danger">${s.i18n.getOrKey("delete")}</a>
+    </td>
+  </tr>
+  #end
+  #if (items.isEmpty)
+  <tr>
+    <td colspan="14">${s.i18n.getOrKey("empty")}</td>
+  </tr>
+  #end
+</tbody>
+</table>
+
+<a href="${s.url(Controllers.attachments.newUrl)}" class="btn btn-primary">${s.i18n.getOrKey("new")}</a>

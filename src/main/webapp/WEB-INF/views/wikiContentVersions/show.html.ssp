@@ -1,0 +1,62 @@
+<%@val item: model.WikiContentVersion %>
+<%@val s: skinny.Skinny %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<h3>${s.i18n.getOrKey("wikiContentVersion.detail")}</h3>
+<hr/>
+#for (notice <- s.flash.notice)
+  <p class="alert alert-info">${notice}</p>
+#end
+<table class="table table-bordered">
+<tbody>
+  <tr>
+    <th>${s.i18n.getOrKey("wikiContentVersion.id")}</th>
+    <td>${item.id}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("wikiContentVersion.wikiContentId")}</th>
+    <td>${item.wikiContentId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("wikiContentVersion.pageId")}</th>
+    <td>${item.pageId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("wikiContentVersion.authorId")}</th>
+    <td>${item.authorId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("wikiContentVersion.data")}</th>
+    <td>${item.data}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("wikiContentVersion.compression")}</th>
+    <td>${item.compression}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("wikiContentVersion.comments")}</th>
+    <td>${item.comments}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("wikiContentVersion.updatedOn")}</th>
+    <td>${item.updatedOn}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("wikiContentVersion.version")}</th>
+    <td>${item.version}</td>
+  </tr>
+
+</tbody>
+</table>
+
+<hr/>
+<div class="form-actions">
+  <a class="btn btn-default" href="${s.url(Controllers.wikiContentVersions.indexUrl)}">${s.i18n.getOrKey("backToList")}</a>
+  <a href="${s.url(Controllers.wikiContentVersions.editUrl, "id" -> item.id)}" class="btn btn-info">${s.i18n.getOrKey("edit")}</a>
+  <a data-method="delete" data-confirm="${s.i18n.getOrKey("wikiContentVersion.delete.confirm")}"
+    href="${s.url(Controllers.wikiContentVersions.destroyUrl, "id" -> item.id)}" rel="nofollow" class="btn btn-danger">${s.i18n.getOrKey("delete")}</a>
+</div>

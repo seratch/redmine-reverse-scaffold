@@ -1,0 +1,70 @@
+<%@val s: skinny.Skinny %>
+<%@val keyAndErrorMessages: skinny.KeyAndErrorMessages %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<div class="form-group">
+  <label class="control-label" for="watchable_type">
+    ${s.i18n.getOrKey("watcher.watchableType")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("watchable_type")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="watchable_type" class="form-control" value="${s.params.watchable_type}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("watchable_type"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("watchable_type"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="watchable_id">
+    ${s.i18n.getOrKey("watcher.watchableId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("watchable_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="watchable_id" class="form-control" value="${s.params.watchable_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("watchable_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("watchable_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="user_id">
+    ${s.i18n.getOrKey("watcher.userId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("user_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="user_id" class="form-control" value="${s.params.user_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("user_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("user_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-actions">
+  ${unescape(s.csrfHiddenInputTag)}
+  <input type="submit" class="btn btn-primary" value="${s.i18n.getOrKey("submit")}">
+  <a class="btn btn-default" href="${s.url(Controllers.watchers.indexUrl)}">${s.i18n.getOrKey("cancel")}</a>
+</div>

@@ -1,0 +1,70 @@
+<%@val s: skinny.Skinny %>
+<%@val keyAndErrorMessages: skinny.KeyAndErrorMessages %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<div class="form-group">
+  <label class="control-label" for="project_id">
+    ${s.i18n.getOrKey("wiki.projectId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("project_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="project_id" class="form-control" value="${s.params.project_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("project_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("project_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="start_page">
+    ${s.i18n.getOrKey("wiki.startPage")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("start_page")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="start_page" class="form-control" value="${s.params.start_page}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("start_page"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("start_page"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="status">
+    ${s.i18n.getOrKey("wiki.status")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("status")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="status" class="form-control" value="${s.params.status}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("status"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("status"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-actions">
+  ${unescape(s.csrfHiddenInputTag)}
+  <input type="submit" class="btn btn-primary" value="${s.i18n.getOrKey("submit")}">
+  <a class="btn btn-default" href="${s.url(Controllers.wikis.indexUrl)}">${s.i18n.getOrKey("cancel")}</a>
+</div>

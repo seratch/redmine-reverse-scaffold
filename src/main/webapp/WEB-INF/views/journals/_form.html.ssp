@@ -1,0 +1,133 @@
+<%@val s: skinny.Skinny %>
+<%@val keyAndErrorMessages: skinny.KeyAndErrorMessages %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<div class="form-group">
+  <label class="control-label" for="journalized_id">
+    ${s.i18n.getOrKey("journal.journalizedId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("journalized_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="journalized_id" class="form-control" value="${s.params.journalized_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("journalized_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("journalized_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="journalized_type">
+    ${s.i18n.getOrKey("journal.journalizedType")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("journalized_type")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="journalized_type" class="form-control" value="${s.params.journalized_type}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("journalized_type"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("journalized_type"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="user_id">
+    ${s.i18n.getOrKey("journal.userId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("user_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="user_id" class="form-control" value="${s.params.user_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("user_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("user_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="notes">
+    ${s.i18n.getOrKey("journal.notes")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("notes")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="notes" class="form-control" value="${s.params.notes}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("notes"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("notes"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label">
+    ${s.i18n.getOrKey("journal.createdOn")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("created_on")) "has-error" else ""}">
+      <div class="col-xs-2">
+        <input type="text" name="created_on_year"   class="form-control" value="${s.params.created_on_year}"   placeholder="${s.i18n.getOrKey("year")}"  maxlength=4 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="created_on_month"  class="form-control" value="${s.params.created_on_month}"  placeholder="${s.i18n.getOrKey("month")}" maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="created_on_day"    class="form-control" value="${s.params.created_on_day}"    placeholder="${s.i18n.getOrKey("day")}"   maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="created_on_hour"   class="form-control" value="${s.params.created_on_hour}"   placeholder="${s.i18n.getOrKey("hour")}"  maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="created_on_minute" class="form-control" value="${s.params.created_on_minute}" placeholder="${s.i18n.getOrKey("minute")}" maxlength=2 />
+      </div>
+      <div class="col-xs-2">
+        <input type="text" name="created_on_second" class="form-control" value="${s.params.created_on_second}" placeholder="${s.i18n.getOrKey("second")}" maxlength=2 />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("created_on"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("created_on"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="private_notes">
+    ${s.i18n.getOrKey("journal.privateNotes")}
+  </label>
+  <div class="controls row">
+    <div class="col-xs-12">
+      <input type="checkbox" name="private_notes" value="true" #if(s.params.private_notes==Some(true)) checked #end />
+    </div>
+  </div>
+</div>
+<div class="form-actions">
+  ${unescape(s.csrfHiddenInputTag)}
+  <input type="submit" class="btn btn-primary" value="${s.i18n.getOrKey("submit")}">
+  <a class="btn btn-default" href="${s.url(Controllers.journals.indexUrl)}">${s.i18n.getOrKey("cancel")}</a>
+</div>

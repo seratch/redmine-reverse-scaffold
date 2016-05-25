@@ -1,0 +1,54 @@
+<%@val item: model.OpenIdAuthenticationAssociation %>
+<%@val s: skinny.Skinny %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<h3>${s.i18n.getOrKey("openIdAuthenticationAssociation.detail")}</h3>
+<hr/>
+#for (notice <- s.flash.notice)
+  <p class="alert alert-info">${notice}</p>
+#end
+<table class="table table-bordered">
+<tbody>
+  <tr>
+    <th>${s.i18n.getOrKey("openIdAuthenticationAssociation.id")}</th>
+    <td>${item.id}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("openIdAuthenticationAssociation.issued")}</th>
+    <td>${item.issued}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("openIdAuthenticationAssociation.lifetime")}</th>
+    <td>${item.lifetime}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("openIdAuthenticationAssociation.handle")}</th>
+    <td>${item.handle}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("openIdAuthenticationAssociation.assocType")}</th>
+    <td>${item.assocType}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("openIdAuthenticationAssociation.serverUrl")}</th>
+    <td>${item.serverUrl}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("openIdAuthenticationAssociation.secret")}</th>
+    <td>${item.secret}</td>
+  </tr>
+
+</tbody>
+</table>
+
+<hr/>
+<div class="form-actions">
+  <a class="btn btn-default" href="${s.url(Controllers.openIdAuthenticationAssociations.indexUrl)}">${s.i18n.getOrKey("backToList")}</a>
+  <a href="${s.url(Controllers.openIdAuthenticationAssociations.editUrl, "id" -> item.id)}" class="btn btn-info">${s.i18n.getOrKey("edit")}</a>
+  <a data-method="delete" data-confirm="${s.i18n.getOrKey("openIdAuthenticationAssociation.delete.confirm")}"
+    href="${s.url(Controllers.openIdAuthenticationAssociations.destroyUrl, "id" -> item.id)}" rel="nofollow" class="btn btn-danger">${s.i18n.getOrKey("delete")}</a>
+</div>

@@ -1,0 +1,78 @@
+<%@val item: model.Attachment %>
+<%@val s: skinny.Skinny %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<h3>${s.i18n.getOrKey("attachment.detail")}</h3>
+<hr/>
+#for (notice <- s.flash.notice)
+  <p class="alert alert-info">${notice}</p>
+#end
+<table class="table table-bordered">
+<tbody>
+  <tr>
+    <th>${s.i18n.getOrKey("attachment.id")}</th>
+    <td>${item.id}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("attachment.containerId")}</th>
+    <td>${item.containerId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("attachment.containerType")}</th>
+    <td>${item.containerType}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("attachment.filename")}</th>
+    <td>${item.filename}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("attachment.diskFilename")}</th>
+    <td>${item.diskFilename}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("attachment.filesize")}</th>
+    <td>${item.filesize}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("attachment.contentType")}</th>
+    <td>${item.contentType}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("attachment.digest")}</th>
+    <td>${item.digest}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("attachment.downloads")}</th>
+    <td>${item.downloads}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("attachment.authorId")}</th>
+    <td>${item.authorId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("attachment.createdOn")}</th>
+    <td>${item.createdOn}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("attachment.description")}</th>
+    <td>${item.description}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("attachment.diskDirectory")}</th>
+    <td>${item.diskDirectory}</td>
+  </tr>
+
+</tbody>
+</table>
+
+<hr/>
+<div class="form-actions">
+  <a class="btn btn-default" href="${s.url(Controllers.attachments.indexUrl)}">${s.i18n.getOrKey("backToList")}</a>
+  <a href="${s.url(Controllers.attachments.editUrl, "id" -> item.id)}" class="btn btn-info">${s.i18n.getOrKey("edit")}</a>
+  <a data-method="delete" data-confirm="${s.i18n.getOrKey("attachment.delete.confirm")}"
+    href="${s.url(Controllers.attachments.destroyUrl, "id" -> item.id)}" rel="nofollow" class="btn btn-danger">${s.i18n.getOrKey("delete")}</a>
+</div>

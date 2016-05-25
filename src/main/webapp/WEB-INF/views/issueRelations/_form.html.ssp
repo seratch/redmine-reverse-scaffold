@@ -1,0 +1,89 @@
+<%@val s: skinny.Skinny %>
+<%@val keyAndErrorMessages: skinny.KeyAndErrorMessages %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<div class="form-group">
+  <label class="control-label" for="issue_from_id">
+    ${s.i18n.getOrKey("issueRelation.issueFromId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("issue_from_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="issue_from_id" class="form-control" value="${s.params.issue_from_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("issue_from_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("issue_from_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="issue_to_id">
+    ${s.i18n.getOrKey("issueRelation.issueToId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("issue_to_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="issue_to_id" class="form-control" value="${s.params.issue_to_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("issue_to_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("issue_to_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="relation_type">
+    ${s.i18n.getOrKey("issueRelation.relationType")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("relation_type")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="relation_type" class="form-control" value="${s.params.relation_type}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("relation_type"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("relation_type"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="delay">
+    ${s.i18n.getOrKey("issueRelation.delay")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("delay")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="delay" class="form-control" value="${s.params.delay}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("delay"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("delay"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-actions">
+  ${unescape(s.csrfHiddenInputTag)}
+  <input type="submit" class="btn btn-primary" value="${s.i18n.getOrKey("submit")}">
+  <a class="btn btn-default" href="${s.url(Controllers.issueRelations.indexUrl)}">${s.i18n.getOrKey("cancel")}</a>
+</div>

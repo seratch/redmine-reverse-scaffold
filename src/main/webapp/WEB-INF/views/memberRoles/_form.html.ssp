@@ -1,0 +1,70 @@
+<%@val s: skinny.Skinny %>
+<%@val keyAndErrorMessages: skinny.KeyAndErrorMessages %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<div class="form-group">
+  <label class="control-label" for="member_id">
+    ${s.i18n.getOrKey("memberRole.memberId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("member_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="member_id" class="form-control" value="${s.params.member_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("member_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("member_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="role_id">
+    ${s.i18n.getOrKey("memberRole.roleId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("role_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="role_id" class="form-control" value="${s.params.role_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("role_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("role_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="inherited_from">
+    ${s.i18n.getOrKey("memberRole.inheritedFrom")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("inherited_from")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="inherited_from" class="form-control" value="${s.params.inherited_from}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("inherited_from"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("inherited_from"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-actions">
+  ${unescape(s.csrfHiddenInputTag)}
+  <input type="submit" class="btn btn-primary" value="${s.i18n.getOrKey("submit")}">
+  <a class="btn btn-default" href="${s.url(Controllers.memberRoles.indexUrl)}">${s.i18n.getOrKey("cancel")}</a>
+</div>

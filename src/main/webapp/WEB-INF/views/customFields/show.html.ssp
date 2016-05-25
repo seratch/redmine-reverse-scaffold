@@ -1,0 +1,102 @@
+<%@val item: model.CustomField %>
+<%@val s: skinny.Skinny %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<h3>${s.i18n.getOrKey("customField.detail")}</h3>
+<hr/>
+#for (notice <- s.flash.notice)
+  <p class="alert alert-info">${notice}</p>
+#end
+<table class="table table-bordered">
+<tbody>
+  <tr>
+    <th>${s.i18n.getOrKey("customField.id")}</th>
+    <td>${item.id}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("customField.theType")}</th>
+    <td>${item.theType}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("customField.name")}</th>
+    <td>${item.name}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("customField.fieldFormat")}</th>
+    <td>${item.fieldFormat}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("customField.possibleValues")}</th>
+    <td>${item.possibleValues}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("customField.regexp")}</th>
+    <td>${item.regexp}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("customField.minLength")}</th>
+    <td>${item.minLength}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("customField.maxLength")}</th>
+    <td>${item.maxLength}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("customField.isRequired")}</th>
+    <td>${item.isRequired}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("customField.isForAll")}</th>
+    <td>${item.isForAll}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("customField.isFilter")}</th>
+    <td>${item.isFilter}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("customField.position")}</th>
+    <td>${item.position}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("customField.searchable")}</th>
+    <td>${item.searchable}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("customField.defaultValue")}</th>
+    <td>${item.defaultValue}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("customField.editable")}</th>
+    <td>${item.editable}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("customField.visible")}</th>
+    <td>${item.visible}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("customField.multiple")}</th>
+    <td>${item.multiple}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("customField.formatStore")}</th>
+    <td>${item.formatStore}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("customField.description")}</th>
+    <td>${item.description}</td>
+  </tr>
+
+</tbody>
+</table>
+
+<hr/>
+<div class="form-actions">
+  <a class="btn btn-default" href="${s.url(Controllers.customFields.indexUrl)}">${s.i18n.getOrKey("backToList")}</a>
+  <a href="${s.url(Controllers.customFields.editUrl, "id" -> item.id)}" class="btn btn-info">${s.i18n.getOrKey("edit")}</a>
+  <a data-method="delete" data-confirm="${s.i18n.getOrKey("customField.delete.confirm")}"
+    href="${s.url(Controllers.customFields.destroyUrl, "id" -> item.id)}" rel="nofollow" class="btn btn-danger">${s.i18n.getOrKey("delete")}</a>
+</div>

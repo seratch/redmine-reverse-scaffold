@@ -1,0 +1,80 @@
+<%@val s: skinny.Skinny %>
+<%@val items: Seq[model.Enumeration] %>
+<%@val totalPages: Int %>
+<%@val page: Int = s.params.page.map(_.toString.toInt).getOrElse(1) %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<h3>${s.i18n.getOrKey("enumeration.list")}</h3>
+<hr/>
+#for (notice <- s.flash.notice)
+  <p class="alert alert-info">${notice}</p>
+#end
+
+#if (totalPages > 1)
+  <ul class="pagination">
+    <li>
+      <a href="${s.url(Controllers.enumerations.indexUrl, "page" -> 1)}">&laquo;</a>
+    </li>
+    <% val maxPage = Math.min(totalPages, if (page <= 5) 11 else page + 5) %>
+    #for (i <- Math.max(1, maxPage - 10) to maxPage)
+      <li class="${if (i == page) "active" else ""}">
+        <a href="${s.url(Controllers.enumerations.indexUrl, "page" -> i)}">${i}</a>
+      </li>
+    #end
+    <li>
+      <a href="${s.url(Controllers.enumerations.indexUrl, "page" -> totalPages)}">&raquo;</a>
+    </li>
+    <li>
+      <span>${Math.min(page, totalPages)} / ${totalPages}</span>
+    </li>
+  </ul>
+#end
+
+<table class="table table-bordered">
+<thead>
+  <tr>
+    <th>${s.i18n.getOrKey("enumeration.id")}</th>
+    <th>${s.i18n.getOrKey("enumeration.name")}</th>
+    <th>${s.i18n.getOrKey("enumeration.position")}</th>
+    <th>${s.i18n.getOrKey("enumeration.isDefault")}</th>
+    <th>${s.i18n.getOrKey("enumeration.theType")}</th>
+    <th>${s.i18n.getOrKey("enumeration.active")}</th>
+    <th>${s.i18n.getOrKey("enumeration.projectId")}</th>
+    <th>${s.i18n.getOrKey("enumeration.parentId")}</th>
+    <th>${s.i18n.getOrKey("enumeration.positionName")}</th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+  #for (item <- items)
+  <tr>
+    <td>${item.id}</td>
+    <td>${item.name}</td>
+    <td>${item.position}</td>
+    <td>${item.isDefault}</td>
+    <td>${item.theType}</td>
+    <td>${item.active}</td>
+    <td>${item.projectId}</td>
+    <td>${item.parentId}</td>
+    <td>${item.positionName}</td>
+    <td>
+      <a href="${s.url(Controllers.enumerations.showUrl, "id" -> item.id)}" class="btn btn-default">${s.i18n.getOrKey("detail")}</a>
+      <a href="${s.url(Controllers.enumerations.editUrl, "id" -> item.id)}" class="btn btn-info">${s.i18n.getOrKey("edit")}</a>
+      <a data-method="delete" data-confirm="${s.i18n.getOrKey("enumeration.delete.confirm")}"
+        href="${s.url(Controllers.enumerations.destroyUrl, "id" -> item.id)}" rel="nofollow" class="btn btn-danger">${s.i18n.getOrKey("delete")}</a>
+    </td>
+  </tr>
+  #end
+  #if (items.isEmpty)
+  <tr>
+    <td colspan="10">${s.i18n.getOrKey("empty")}</td>
+  </tr>
+  #end
+</tbody>
+</table>
+
+<a href="${s.url(Controllers.enumerations.newUrl)}" class="btn btn-primary">${s.i18n.getOrKey("new")}</a>

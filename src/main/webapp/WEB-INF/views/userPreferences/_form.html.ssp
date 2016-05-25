@@ -1,0 +1,80 @@
+<%@val s: skinny.Skinny %>
+<%@val keyAndErrorMessages: skinny.KeyAndErrorMessages %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<div class="form-group">
+  <label class="control-label" for="user_id">
+    ${s.i18n.getOrKey("userPreference.userId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("user_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="user_id" class="form-control" value="${s.params.user_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("user_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("user_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="others">
+    ${s.i18n.getOrKey("userPreference.others")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("others")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="others" class="form-control" value="${s.params.others}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("others"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("others"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="hide_mail">
+    ${s.i18n.getOrKey("userPreference.hideMail")}
+  </label>
+  <div class="controls row">
+    <div class="col-xs-12">
+      <input type="checkbox" name="hide_mail" value="true" #if(s.params.hide_mail==Some(true)) checked #end />
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="time_zone">
+    ${s.i18n.getOrKey("userPreference.timeZone")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("time_zone")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="time_zone" class="form-control" value="${s.params.time_zone}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("time_zone"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("time_zone"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-actions">
+  ${unescape(s.csrfHiddenInputTag)}
+  <input type="submit" class="btn btn-primary" value="${s.i18n.getOrKey("submit")}">
+  <a class="btn btn-default" href="${s.url(Controllers.userPreferences.indexUrl)}">${s.i18n.getOrKey("cancel")}</a>
+</div>

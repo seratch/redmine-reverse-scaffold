@@ -1,0 +1,70 @@
+<%@val item: model.Query %>
+<%@val s: skinny.Skinny %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<h3>${s.i18n.getOrKey("query.detail")}</h3>
+<hr/>
+#for (notice <- s.flash.notice)
+  <p class="alert alert-info">${notice}</p>
+#end
+<table class="table table-bordered">
+<tbody>
+  <tr>
+    <th>${s.i18n.getOrKey("query.id")}</th>
+    <td>${item.id}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("query.projectId")}</th>
+    <td>${item.projectId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("query.name")}</th>
+    <td>${item.name}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("query.filters")}</th>
+    <td>${item.filters}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("query.userId")}</th>
+    <td>${item.userId}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("query.columnNames")}</th>
+    <td>${item.columnNames}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("query.sortCriteria")}</th>
+    <td>${item.sortCriteria}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("query.groupBy")}</th>
+    <td>${item.groupBy}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("query.theType")}</th>
+    <td>${item.theType}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("query.visibility")}</th>
+    <td>${item.visibility}</td>
+  </tr>
+  <tr>
+    <th>${s.i18n.getOrKey("query.options")}</th>
+    <td>${item.options}</td>
+  </tr>
+
+</tbody>
+</table>
+
+<hr/>
+<div class="form-actions">
+  <a class="btn btn-default" href="${s.url(Controllers.queries.indexUrl)}">${s.i18n.getOrKey("backToList")}</a>
+  <a href="${s.url(Controllers.queries.editUrl, "id" -> item.id)}" class="btn btn-info">${s.i18n.getOrKey("edit")}</a>
+  <a data-method="delete" data-confirm="${s.i18n.getOrKey("query.delete.confirm")}"
+    href="${s.url(Controllers.queries.destroyUrl, "id" -> item.id)}" rel="nofollow" class="btn btn-danger">${s.i18n.getOrKey("delete")}</a>
+</div>

@@ -1,0 +1,89 @@
+<%@val s: skinny.Skinny %>
+<%@val keyAndErrorMessages: skinny.KeyAndErrorMessages %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<div class="form-group">
+  <label class="control-label" for="customized_type">
+    ${s.i18n.getOrKey("customValue.customizedType")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("customized_type")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="customized_type" class="form-control" value="${s.params.customized_type}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("customized_type"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("customized_type"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="customized_id">
+    ${s.i18n.getOrKey("customValue.customizedId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("customized_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="customized_id" class="form-control" value="${s.params.customized_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("customized_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("customized_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="custom_field_id">
+    ${s.i18n.getOrKey("customValue.customFieldId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("custom_field_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="custom_field_id" class="form-control" value="${s.params.custom_field_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("custom_field_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("custom_field_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="value">
+    ${s.i18n.getOrKey("customValue.value")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("value")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="value" class="form-control" value="${s.params.value}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("value"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("value"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-actions">
+  ${unescape(s.csrfHiddenInputTag)}
+  <input type="submit" class="btn btn-primary" value="${s.i18n.getOrKey("submit")}">
+  <a class="btn btn-default" href="${s.url(Controllers.customValues.indexUrl)}">${s.i18n.getOrKey("cancel")}</a>
+</div>

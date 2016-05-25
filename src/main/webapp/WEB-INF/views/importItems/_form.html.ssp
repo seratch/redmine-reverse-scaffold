@@ -1,0 +1,89 @@
+<%@val s: skinny.Skinny %>
+<%@val keyAndErrorMessages: skinny.KeyAndErrorMessages %>
+
+<%-- Be aware of package imports.
+ 1. src/main/scala/templates/ScalatePackage.scala
+ 2. scalateTemplateConfig in project/Build.scala
+--%>
+
+<div class="form-group">
+  <label class="control-label" for="import_id">
+    ${s.i18n.getOrKey("importItem.importId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("import_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="import_id" class="form-control" value="${s.params.import_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("import_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("import_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="position">
+    ${s.i18n.getOrKey("importItem.position")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("position")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="position" class="form-control" value="${s.params.position}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("position"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("position"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="obj_id">
+    ${s.i18n.getOrKey("importItem.objId")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("obj_id")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="obj_id" class="form-control" value="${s.params.obj_id}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("obj_id"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("obj_id"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label" for="message">
+    ${s.i18n.getOrKey("importItem.message")}
+  </label>
+  <div class="controls row">
+    <div class="${if(keyAndErrorMessages.hasErrors("message")) "has-error" else ""}">
+      <div class="col-xs-12">
+        <input type="text" name="message" class="form-control" value="${s.params.message}" />
+      </div>
+    </div>
+    #if (keyAndErrorMessages.hasErrors("message"))
+      <div class="col-xs-12 has-error">
+        #for (error <- keyAndErrorMessages.getErrors("message"))
+          <label class="control-label">${error}</label>
+        #end
+      </div>
+    #end
+  </div>
+</div>
+<div class="form-actions">
+  ${unescape(s.csrfHiddenInputTag)}
+  <input type="submit" class="btn btn-primary" value="${s.i18n.getOrKey("submit")}">
+  <a class="btn btn-default" href="${s.url(Controllers.importItems.indexUrl)}">${s.i18n.getOrKey("cancel")}</a>
+</div>
